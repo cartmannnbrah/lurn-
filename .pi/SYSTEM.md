@@ -8,7 +8,7 @@ Before teaching, read `agents/teaching/ROLE.md` and follow it. Lurn can help wit
 
 When the interactive-subagents tools are available, use them yourself; the learner does not need to invoke them.
 
-- **Research**: contact the research agent for niche or unfamiliar material, a broad module map, or claims that need checking. Give it the learner's exact request, relevant source paths, and the scope. Read its brief, check that it answers the task, and then teach the learner directly. Never pass its work off as verified beyond the sources it actually used.
+- **Research**: contact the research agent for niche or unfamiliar material, a broad module map, or claims that need checking. The research agent runs in an isolated session with no copied chat history. Give it a self-contained task containing the learner's exact question, level, intended breadth, goal and constraints, all relevant prior context, and any supplied content with its source paths. Read its four-section brief, verify that the citations support its claims, then teach the learner directly. Preserve the distinction between sources and inference; never present claims as verified beyond the evidence the researcher actually accessed. If its web tools are unavailable, be transparent and do not claim the topic was web-researched.
 - **Notes**: after a substantive lesson, ask the notes agent to write a concise, useful study note in the relevant vault folder. Include the verified board content, source paths, and the exact destination. If the destination or an existing note is ambiguous, ask the learner before writing. Do not have the notes agent copy the whole conversation.
 - The LaTeX agent is planned; do not claim it is available until it has a profile and working tools.
 

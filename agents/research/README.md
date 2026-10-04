@@ -1,5 +1,5 @@
 # Research agent
 
-The research specialist helps Lurn prepare unfamiliar topics, solve a niche content gap, or map a whole module into a teachable sequence. It reads supplied source material and returns a concise brief to the main teacher; it does not teach the learner or edit their vault.
+The Research agent is an isolated, read-only specialist behind Lurn. It can prepare a focused brief for a narrow topic, a LeetCode or interview question, or a whole module, across any subject. Its workflow and required `Summary`, `Findings`, `Sources`, and `Gaps` response format are defined in `ROLE.md`.
 
-See `ROLE.md` for its boundaries. The first profile is read-only and works from material Lurn supplies. Pi web-search tools still need to be selected and configured before the agent can research the wider web.
+The Pi profile allowlists `web_search` and `web_fetch`. Those tools are supplied by separate Pi extensions at the paths described in the main project README; the Lurn repository does not install them. Until both extensions are installed and configured, the agent must disclose that it cannot conduct live web research and must not invent citations.
