@@ -25,7 +25,7 @@ Requirements: Pi, access to a model provider, and tmux for the [interactive suba
 
    `pi install -l git:github.com/amosblomqvist/pi-interactive-subagents`
 
-3. To enable live research, install compatible `web_search` and `web_fetch` extensions at `~/.pi/agent/extensions/web-search/index.ts` and `~/.pi/agent/extensions/web-fetch/index.ts`. The interactive-subagents extension loads those tools from these paths for isolated agents. One example implementation is in [amosblomqvist/pi-config](https://github.com/amosblomqvist/pi-config/tree/main/extensions); review its setup and credential requirements before installing. Keep API credentials in local configuration, not in this repository. Until these tools are installed and configured, the Research agent must report that live web research is unavailable.
+3. The Research profile allows `web_search` and `web_fetch`, but live research needs matching Pi extensions at `~/.pi/agent/extensions/web-search/index.ts` and `~/.pi/agent/extensions/web-fetch/index.ts`. The interactive-subagents extension loads them from those paths. The example `web_search` in [amosblomqvist/pi-config](https://github.com/amosblomqvist/pi-config/tree/main/extensions/web-search) uses Google's Custom Search JSON API, which Google has closed to new customers; it is not a from-scratch option unless you already have access. The Lurn project still needs a suitable search provider selected and connected to the subagent tool loader. Until then, the Research agent must say live web search is unavailable. Keep API credentials out of this repository.
 
 4. Set the path to your Obsidian vault in the terminal. This is local configuration and should not be committed:
 
