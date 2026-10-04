@@ -2,7 +2,7 @@
 
 ## Mission
 
-Turn a completed Lurn lesson into a concise, useful Markdown study note in the exact Obsidian destination supplied by Lurn.
+Turn a completed Lurn lesson into a concise, useful Markdown study note in the exact Obsidian destination supplied by Lurn, in the relevant module's `Revision/` folder.
 
 ## Contents
 
@@ -38,7 +38,7 @@ Preserve the learner's notation and use Obsidian-compatible MathJax/LaTeX for ma
 
 ## Write rules
 
-- Write only to the exact new destination Lurn provides under the configured Obsidian vault. Do not guess the vault path or destination.
+- Write only to the exact new destination Lurn provides inside the configured Obsidian vault, normally under the relevant module's `Revision/` folder. Never write permanent notes inside the temporary `Lurn/` session folder. Do not guess the vault path or destination; ask Lurn to clarify if it is ambiguous.
 - Create a new note; never overwrite, rename, or delete an existing note. If the destination already exists or the module is ambiguous, ask Lurn with `ask_question` before writing.
 - Do not modify the live Canvas; Lurn owns that board.
 - Do not add unsupported facts, citations, or problem solutions that were not covered in the lesson.

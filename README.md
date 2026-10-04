@@ -10,11 +10,15 @@ Lurn currently runs in Pi's interactive terminal. It is not a separate desktop o
 |---|---|---|
 | `.pi/SYSTEM.md` | Makes the Pi root session act as Lurn's main teacher and coordinator | Active |
 | `agents/teaching/` | Lesson flow, quizzes, and keeping the Obsidian lesson board current | Active role |
-| `agents/research/` | Web research briefs for concepts, problems, interview questions, or whole modules | Role and tool allowlist ready; web-search extensions still need installing/configuring |
-| `agents/notes/` | Save concise lesson notes to the right Obsidian module or practice folder | Active role; needs a configured vault path |
+| `agents/research/` | Local Obsidian research briefs, with web research when configured | Vault tools ready; live web search still needs a provider |
+| `agents/notes/` | Save concise lesson notes to the right Obsidian module or practice folder | Active role; launcher supplies the default vault path |
 | `agents/latex/` | Turn rough or dictated mathematical working into clean LaTeX | Planned |
 
 The research and notes specialists have Pi profiles in `.pi/agents/`. They return their work to Lurn, which keeps teaching and quizzing you. There is no separate teacher agent to summon. Each role's instructions live in its folder so you can refine the agents separately.
+
+The project extensions in `.pi/extensions/lesson-interactions.ts` provide `quiz` for right-or-wrong checks and `ask_user_question` for genuine preferences. `.pi/extensions/vault-access.ts` provides read-only, vault-scoped listing, search, and reading tools. It reads Markdown and other text notes directly and extracts selectable PDF text with macOS PDFKit; image-only PDFs need OCR. The Research profile has no general filesystem, shell, or write tools.
+
+Lurn's project settings collapse thinking blocks by default. Press **Ctrl+T** to expand or collapse them during a session. **Ctrl+O** is Pi's separate shortcut for expanding or collapsing tool output. Restart Pi from this repository after changing the setting.
 
 ## Run Lurn
 
@@ -25,30 +29,25 @@ Requirements: Pi, access to a model provider, and tmux for the [interactive suba
 
    `pi install -l git:github.com/amosblomqvist/pi-interactive-subagents`
 
-3. The Research profile allows `web_search` and `web_fetch`, but live research needs matching Pi extensions at `~/.pi/agent/extensions/web-search/index.ts` and `~/.pi/agent/extensions/web-fetch/index.ts`. The interactive-subagents extension loads them from those paths. The example `web_search` in [amosblomqvist/pi-config](https://github.com/amosblomqvist/pi-config/tree/main/extensions/web-search) uses Google's Custom Search JSON API, which Google has closed to new customers; it is not a from-scratch option unless you already have access. The Lurn project still needs a suitable search provider selected and connected to the subagent tool loader. Until then, the Research agent must say live web search is unavailable. Keep API credentials out of this repository.
-
-4. Set the path to your Obsidian vault in the terminal. This is local configuration and should not be committed:
-
-   `export LURN_OBSIDIAN_VAULT="/path/to/your/Obsidian Vault"`
-
-5. Start Pi from the repository root with `./run-lurn.sh`. Trust the Lurn project when Pi prompts so it can load the project instructions and agent profiles. Use `/login` to connect a model provider if you have not already.
-6. Talk to Lurn directly, for example: “Teach me eigenvectors from my MA149 notes,” “Map the whole PX156 module,” or “Give me a hint for this LeetCode problem.”
+3. Local research works from the configured Obsidian vault through `vault_list`, `vault_search`, and `vault_read`. Live web research still needs working `web_search` and `web_fetch` extensions in `~/.pi/agent/extensions/`; the Research agent must disclose if those tools are unavailable and must not invent citations. The previously considered `pi-config` sample uses Google Custom Search and is not a turnkey provider setup; select and configure a suitable provider before relying on live search. Keep API credentials out of this repository.
+4. Start Pi from the repository root with `./run-lurn.sh`. The launcher uses `~/Documents/Obsidian Vault` as the default vault. Set `LURN_OBSIDIAN_VAULT` before launching only if you want to use a different vault. Trust the Lurn project when Pi prompts so it can load project instructions and agent profiles. Use `/login` to connect a model provider if needed.
+5. Talk to Lurn directly, for example: “Teach me eigenvectors from my MA149 notes,” “Map the whole PX156 module,” or “Give me a hint for this LeetCode problem.”
 
 The first time you open Pi in the Lurn repository, its project instructions make the root session the tutor. Lurn can call the research and notes agents without you typing a `/subagent teacher` command.
 
 ## Obsidian as the lesson board
 
-Lurn uses the vault path in `LURN_OBSIDIAN_VAULT`. It creates a fresh Canvas for each lesson in the relevant module folder, or in the relevant Practice or Career area for coding and interview sessions. The Canvas is the live board for the goal, current question, definitions, working, and diagrams. Course notes appear as linked source cards. Diagrams can be linked as image files when that capability is added.
+Lurn uses `LURN_OBSIDIAN_VAULT` (default `~/Documents/Obsidian Vault`). `Lurn/Current Session.canvas` is the reusable live board. At the start of a lesson, Lurn clears stale session content and updates the board while teaching. When a lesson ends, it saves any requested permanent summary under the module's `Revision/` folder, then clears the board. Lecture PDFs remain in each module's `Lectures/` folder and can be linked from the Canvas.
 
 The notes agent writes a separate, concise Markdown study note after a substantive lesson. It does not replace source notes; it asks Lurn when the destination is ambiguous or an existing note might need changing.
 
 ## Agent roles
 
-- **Lurn / teacher:** Main point of contact. Adapts to a single topic, a problem-solving session, or a broad module request; teaches and quizzes directly; coordinates specialists; maintains the live Obsidian Canvas.
-- **Research:** Read-only. Receives a self-contained task, searches 2–4 facets from varied angles, fetches the strongest sources, and returns a cited brief with `Summary`, `Findings`, `Sources`, and `Gaps`. Its profile allows `web_search` and `web_fetch`; the extensions still need to be installed and configured as described above before live research works.
+- **Lurn / teacher:** Main point of contact. Maps the learner's level and goal, researches and presents a dependency plan for approval, then teaches and checks one connected idea at a time.
+- **Research:** Read-only. Reads relevant local course sources first, then searches 2–4 facets and fetches strong web sources when the required tools are available. Returns `Summary`, `Findings`, `Sources`, and `Gaps`. Online search still needs a provider; without it, the agent reports that it used local material only.
 - **Notes:** Writes a concise lesson note to the exact destination Lurn provides in the configured vault. It does not teach, invent missing course facts, or overwrite existing notes.
 - **LaTeX:** Planned as a separate role.
 
 ## First milestone
 
-Use Lurn for one real topic or interview question. Check that the teacher scopes the request well, asks questions one at a time, uses the Canvas as the visual board, delegates only when useful, and saves a clear note in the right place. Record specific improvements in `agents/teaching/REVIEW.md`.
+Restart Pi from this repository and confirm the quiz, preference, and vault tools load. Try one lesson from a Warwick module folder and check that Research cites the right local sources. Then verify the live Canvas and notes-agent save in Obsidian. Record teaching improvements in `agents/teaching/REVIEW.md`.
