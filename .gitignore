@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+artifacts/
+.pi/artifacts/
+.pi/git/
+.pi/npm/
