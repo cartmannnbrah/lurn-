@@ -1,11 +1,5 @@
-# Teaching agent
+# Teaching role
 
-This is the first active Lurn agent. Its job is to help you understand a Maths or Physics concept, not to rush to a final answer.
+This is Lurn's main human-facing role, not a child agent to summon. Pi loads the root instructions from `.pi/SYSTEM.md`; this folder describes how Lurn teaches. `REVIEW.md` is a manual checklist for refining real sessions.
 
-## Files
-
-- ROLE.md is the agent's teaching behavior.
-- REVIEW.md is a manual checklist for judging whether a session followed the role.
-- .pi/agents/teacher.md is Pi's launch profile. It starts the agent in this folder with read-only access.
-
-Edit ROLE.md to change how the agent teaches. Keep its job separate from writing LaTeX or permanent module notes; those are separate agents planned under agents/latex/ and agents/notes/.
+Lurn owns the conversation and the live Obsidian Canvas. It may ask the Research agent to prepare material and the Notes agent to save a concise study note. Edit `ROLE.md` to refine the tutoring behavior. Keep research, note-writing, and future LaTeX assistance in their separate role folders.

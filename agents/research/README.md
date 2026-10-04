@@ -1,5 +1,5 @@
-# Research agent — planned
+# Research agent
 
-Purpose: verify uncertain mathematical or physics claims against reliable sources and return a short, cited brief to the teaching agent.
+The research specialist helps Lurn prepare unfamiliar topics, solve a niche content gap, or map a whole module into a teachable sequence. It reads supplied source material and returns a concise brief to the main teacher; it does not teach the learner or edit their vault.
 
-Its future instructions should prefer textbooks, papers, and official course material, and clearly distinguish verified facts from inference. It is not active yet; web-search tools still need to be chosen and connected.
+See `ROLE.md` for its boundaries. The first profile is read-only and works from material Lurn supplies. Pi web-search tools still need to be selected and configured before the agent can research the wider web.

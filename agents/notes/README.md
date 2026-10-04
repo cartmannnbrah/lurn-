@@ -1,5 +1,5 @@
-# Notes agent — planned
+# Notes agent
 
-Purpose: summarize a completed Lurn lesson into the correct Maths or Physics module folder in the Obsidian vault.
+The notes specialist turns a completed lesson into a concise, reusable Markdown note in the matching Obsidian module, Practice, or Career area. Lurn passes it the verified lesson material, source paths, and exact destination. It does not teach or update the live Canvas.
 
-Its future instructions should cite the source lesson and course notes, preserve useful derivations and examples, and ask before choosing a destination when the module is ambiguous. It is not active yet and currently has no Pi launch profile.
+See `ROLE.md` for its writing rules. The agent needs `LURN_OBSIDIAN_VAULT` configured before it can save notes.
